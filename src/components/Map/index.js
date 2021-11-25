@@ -5,7 +5,7 @@ import { LocationOnOutlined } from "@material-ui/icons"
 import Rating from '@material-ui/lab/Rating'
 import useStyles from './styles';
 
-const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked }) => {
+const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData }) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery('(min-width:600px)');
 
@@ -50,6 +50,17 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked })
             }
           </div>
         ))}
+
+        {weatherData?.list?.length && weatherData.list.map((data, index) => (
+          <div key={index} lat={data.coord.lat} lng={data.coord.lon}>
+            <img 
+              src = {
+                `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
+              } alt="" height="70px"
+            />
+          </div>
+        ))}
+
       </GoogleMapReact>
     </div>
   )
