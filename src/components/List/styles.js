@@ -15,5 +15,12 @@ export default makeStyles((theme) => ({
     height: '75vh',
     overflow: 'auto',
   },
+
+  loading: {
+    height: '600px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   
 }));
