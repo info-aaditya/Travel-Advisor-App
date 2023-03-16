@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { CssBaseline, Grid } from '@material-ui/core';
+import { CssBaseline, Grid, createTheme, ThemeProvider } from '@mui/material';
 import { getPlacesData, getWeatherData } from './api';
 import Header from './components/Header';
 import List from './components/List';
 import Map from './components/Map';
 
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        sm: 600,
+        md: 960,
+      },
+    },
+  });
+  
   const App = () => {
     const [places, setPlaces] = useState([]);
     const [filteredPlaces, setFilteredPlaces] = useState([]);
@@ -45,10 +54,11 @@ import Map from './components/Map';
             setIsLoading(false);
         }) 
       }       
-    }, [type, bounds, coordinates.lat, coordinates.lng ]);
+  }, [type, bounds, coordinates.lat, coordinates.lng ]);
 
   return (
     <div className="App">
+      <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
       <Grid container spacing={3}
@@ -76,6 +86,7 @@ import Map from './components/Map';
           />
         </Grid>
       </Grid>
+      </ThemeProvider>
     </div>
   );
 }
