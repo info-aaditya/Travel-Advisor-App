@@ -27,7 +27,7 @@ import Map from './components/Map';
     useEffect(() => {
       const filteredPlaces = places.filter((place)=> Number(place.rating) > rating)
       setFilteredPlaces(filteredPlaces)
-    }, [rating]);
+    }, [places, rating]);
 
     useEffect(() => {
       if(bounds.sw && bounds.ne) {
@@ -45,7 +45,7 @@ import Map from './components/Map';
             setIsLoading(false);
         }) 
       }       
-    }, [type, bounds]);
+    }, [type, bounds, coordinates.lat, coordinates.lng ]);
 
   return (
     <div className="App">
